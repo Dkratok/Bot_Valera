@@ -33,6 +33,8 @@ def get_text_messages(message):
             bot.send_message(message.from_user.id,'https://www.dropbox.com/sh/ga6sp5xdezfpr4h/AADFQYoOrjf2yVK9YjSldEmNa?dl=0')
         elif 'скетч' in req:
             bot.send_photo(message.from_user.id, open('media/Sketch.jpeg', 'rb'))
+        elif ('стяжка' in req) | ('схема стяжки' in req):
+            bot.send_photo(message.from_user.id, open('media/Floor.jpg', 'rb'))
         elif 'мдк' in req:
             bot.send_message(message.from_user.id,'ОАО «Минский домостроительный комбинат», 220015, г. Минск, ул. Пономаренко, 43. Отдел инвестиций (долевое строительство): (017)207-20-60, (044)7771158, обед с 12 до 12-45. http://minskdsk.by/')
         elif ('рубль' or 'курс рубля') in req:
