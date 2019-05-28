@@ -1,1 +1,1 @@
-worker: python src/valera.py
+web: python /src/valera.py
