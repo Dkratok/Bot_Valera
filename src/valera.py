@@ -4,7 +4,7 @@ import datetime
 import codecs
 from src.logging_module import *
 
-bot = telebot.TeleBot('829206256:AAFfv3BzwQ2uhM2Z_567fNWmcOOUowRj-pg');
+bot = telebot.TeleBot('');
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
@@ -38,21 +38,21 @@ def get_text_messages(message):
         elif 'мдк' in req:
             bot.send_message(message.from_user.id,'ОАО «Минский домостроительный комбинат», 220015, г. Минск, ул. Пономаренко, 43. Отдел инвестиций (долевое строительство): (017)207-20-60, (044)7771158, обед с 12 до 12-45. http://minskdsk.by/')
         elif ('рубль' or 'курс рубля') in req:
-            bot.send_message(message.from_user.id,'Курс рос. рубля на сегодня ' + today_date_str + ' (за 100 рос. рублей) - ' + str(get_rate_from_json(get_rate_responce(rub))));
-            bot.send_message(message.from_user.id,' Курс рос. рубля на завтра ' + tomorrow_date_str + '(за 100 рос. рублей) - ' + str(get_rate_from_json(get_rate_responce(rub, tomorrow_date_str))));
+            bot.send_message(message.from_user.id,'Курс рос. рубля на сегодня ' + today_date_str + ' (за 100 рос. рублей) - ' + str(get_rate_from_json(get_rate_response(rub))));
+            bot.send_message(message.from_user.id,' Курс рос. рубля на завтра ' + tomorrow_date_str + '(за 100 рос. рублей) - ' + str(get_rate_from_json(get_rate_response(rub, tomorrow_date_str))));
         elif ('доллар' or 'курс доллара') in req:
-            bot.send_message(message.from_user.id, 'Курс доллара на сегодня ' + today_date_str + ' - ' + str(get_rate_from_json(get_rate_responce(dol))));
-            bot.send_message(message.from_user.id, ' Курс доллара на завтра ' + tomorrow_date_str + ' - ' + str(get_rate_from_json(get_rate_responce(dol, tomorrow_date_str))));
+            bot.send_message(message.from_user.id, 'Курс доллара на сегодня ' + today_date_str + ' - ' + str(get_rate_from_json(get_rate_response(dol))));
+            bot.send_message(message.from_user.id, ' Курс доллара на завтра ' + tomorrow_date_str + ' - ' + str(get_rate_from_json(get_rate_response(dol, tomorrow_date_str))));
         elif ('евро' or 'курс евро') in req:
-            bot.send_message(message.from_user.id, 'Курс евро на сегодня ' + today_date_str + ' - ' + str(get_rate_from_json(get_rate_responce(euro))));
-            bot.send_message(message.from_user.id, ' Курс евро на завтра ' + tomorrow_date_str + ' - ' + str(get_rate_from_json(get_rate_responce(euro, tomorrow_date_str))));
+            bot.send_message(message.from_user.id, 'Курс евро на сегодня ' + today_date_str + ' - ' + str(get_rate_from_json(get_rate_response(euro))));
+            bot.send_message(message.from_user.id, ' Курс евро на завтра ' + tomorrow_date_str + ' - ' + str(get_rate_from_json(get_rate_response(euro, tomorrow_date_str))));
         elif ('курсы' or 'курсы валют') in req:
-            bot.send_message(message.from_user.id, 'Курс доллара на сегодня ' + today_date_str + ' - ' + str(get_rate_from_json(get_rate_responce(dol))));
-            bot.send_message(message.from_user.id, ' Курс доллара на завтра ' + tomorrow_date_str + ' - ' + str(get_rate_from_json(get_rate_responce(dol, tomorrow_date_str))));
-            bot.send_message(message.from_user.id, 'Курс евро на сегодня ' + today_date_str + ' - ' + str(get_rate_from_json(get_rate_responce(euro))));
-            bot.send_message(message.from_user.id, ' Курс евро на завтра ' + tomorrow_date_str + ' - ' + str(get_rate_from_json(get_rate_responce(euro, tomorrow_date_str))));
-            bot.send_message(message.from_user.id, 'Курс рос. рубля на сегодня ' + today_date_str + ' (за 100 рос. рублей) - ' + str(get_rate_from_json(get_rate_responce(rub))));
-            bot.send_message(message.from_user.id, ' Курс рос. рубля на завтра ' + tomorrow_date_str + ' (за 100 рос. рублей) - ' + str(get_rate_from_json(get_rate_responce(rub, tomorrow_date_str))));
+            bot.send_message(message.from_user.id, 'Курс доллара на сегодня ' + today_date_str + ' - ' + str(get_rate_from_json(get_rate_response(dol))));
+            bot.send_message(message.from_user.id, ' Курс доллара на завтра ' + tomorrow_date_str + ' - ' + str(get_rate_from_json(get_rate_response(dol, tomorrow_date_str))));
+            bot.send_message(message.from_user.id, 'Курс евро на сегодня ' + today_date_str + ' - ' + str(get_rate_from_json(get_rate_response(euro))));
+            bot.send_message(message.from_user.id, ' Курс евро на завтра ' + tomorrow_date_str + ' - ' + str(get_rate_from_json(get_rate_response(euro, tomorrow_date_str))));
+            bot.send_message(message.from_user.id, 'Курс рос. рубля на сегодня ' + today_date_str + ' (за 100 рос. рублей) - ' + str(get_rate_from_json(get_rate_response(rub))));
+            bot.send_message(message.from_user.id, ' Курс рос. рубля на завтра ' + tomorrow_date_str + ' (за 100 рос. рублей) - ' + str(get_rate_from_json(get_rate_response(rub, tomorrow_date_str))));
         else:
             bot.send_message(message.from_user.id,"Моя твоя не понимать. Список вопросов, на которые я могу ответить ты найдёшь по запросу 'help'.")
     except Exception as e:

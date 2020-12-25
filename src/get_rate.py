@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def get_rate_responce(cur_id, date=0):
+def get_rate_response(cur_id, date=0):
     if date != 0:
         req_url = 'http://www.nbrb.by/API/ExRates/Rates/' + str(cur_id) + '?onDate=' + date
     else:
