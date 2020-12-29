@@ -64,4 +64,5 @@ if __name__ == '__main__':
             bot.polling(none_stop=True)
         except Exception as e:
             time.sleep(3)
+            logger.error(f'error: {e}')
             print(str(e))
