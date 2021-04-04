@@ -5,8 +5,11 @@ import datetime
 import src.read_from_files as rfl
 from src.logging_module import *
 
-bot = telebot.TeleBot('1490395742:AAFONIhyk_it0_o1mnyKaE3fM_bS2AqD4fE')
+bot = telebot.TeleBot(rfl.read_whole_file('token.txt'))
 
+@bot.message_handler(commands=['start'])
+def get_start_messages(message):
+    bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), parse_mode='Markdown')
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
@@ -21,7 +24,7 @@ def get_text_messages(message):
 
     try:
         if req == 'привет':
-            bot.send_message(message.from_user.id, "Привет! Я - бот Кузя. Если нужна помощь пищи 'помощь' или 'help'. Чем могу тебе помочь?")
+            bot.send_message(message.from_user.id, "Привет! Я - бот Кузя. Если нужна помощь пиши 'помощь' или 'help'. Чем могу тебе помочь?")
         elif ('помощь' in req) | ('help' in req):
             bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), parse_mode='Markdown')
         elif ('то' in req) | ('регламент' in req) | ('обслуживание' in req):
@@ -32,6 +35,8 @@ def get_text_messages(message):
             bot.send_document(message.from_user.id, open('media/cruze_manual.pdf', 'rb').read())
         elif ('клуб' in req) | ('чат' in req) | ('chat' in req):
             bot.send_message(message.from_user.id, 'https://t.me/cruzefamily_minsk')
+        elif 'габарит' in req:
+            bot.send_photo(message.from_user.id, open('media/dimensions.jpg', 'rb'))
         elif 'дворник' in req:
             bot.send_message(message.from_user.id, rfl.read_whole_file('data/wipers.txt'), parse_mode='Markdown')
         elif ('колес' in req) | ('колёс' in req) | ('диски' in req):
