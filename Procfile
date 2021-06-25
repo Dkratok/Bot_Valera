@@ -1,1 +1,1 @@
-worker: python cruze_bot.py
+web: gunicorn main:app

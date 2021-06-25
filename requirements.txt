@@ -1,2 +1,8 @@
-pytelegrambotapi==3.7.4
-requests==2.25.1
+gunicorn
+Flask
+werkzeug
+sslcrypto
+pyTelegramBotAPI
+datetime
+tg-logger
+pytz
