@@ -7,9 +7,11 @@ from src.logging_module import *
 
 bot = telebot.TeleBot(rfl.read_whole_file('token.txt'))
 
+
 @bot.message_handler(commands=['start'])
 def get_start_messages(message):
     bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), parse_mode='Markdown')
+
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
