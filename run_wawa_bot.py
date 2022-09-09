@@ -25,22 +25,16 @@ def get_text_messages(message):
                                                    " ў залежнасцi ад таго, якое пытанне цiкавiць.")
         elif ('дапамога' in req) | ('помощь' in req) | ('help' in req):
             bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), parse_mode='Markdown')
-        elif ('то' in req) | ('регламент' in req) | ('обслуживание' in req):
-            bot.send_photo(message.from_user.id, open('media/to.jpg', 'rb'))
-        elif ('дилер' in req) | ('dealer' in req):
-            bot.send_message(message.from_user.id, rfl.read_whole_file('data/dealers.txt'), parse_mode='Markdown')
-        elif ('инструкция' in req) | ('мануал' in req) | ('manual' in req):
-            bot.send_document(message.from_user.id, open('media/cruze_manual.pdf', 'rb').read())
-        elif ('клуб' in req) | ('чат' in req) | ('chat' in req):
-            bot.send_message(message.from_user.id, 'https://t.me/cruzefamily_minsk')
-        elif 'габарит' in req:
-            bot.send_photo(message.from_user.id, open('media/dimensions.jpg', 'rb'))
-        elif 'дворник' in req:
-            bot.send_message(message.from_user.id, rfl.read_whole_file('data/wipers.txt'), parse_mode='Markdown')
-        elif ('колес' in req) | ('колёс' in req) | ('диски' in req):
-            bot.send_message(message.from_user.id, rfl.read_whole_file('data/wheels.txt'), parse_mode='Markdown')
+        elif ('нашы рэгулярныя забегi' in req):
+            bot.send_photo(message.from_user.id, open('data/reg_runs.txt'))
+        elif ('масавыя забегі ў варшаве' in req) | ('mass_run.txt' in req):
+            bot.send_message(message.from_user.id, rfl.read_whole_file('data/shops.txt'), parse_mode='Markdown')
+        elif ('набыць экіпіроўку' in req):
+            bot.send_document(message.from_user.id, open('data/shops.txt'), parse_mode='Markdown')
+        elif ('спасылкі' in req):
+            bot.send_message(message.from_user.id, open('data/links.txt'), parse_mode='Markdown')
         else:
-            bot.send_message(message.from_user.id,"Моя твоя не понимать. Список вопросов, на которые я могу ответить ты найдёшь по запросу 'help'.")
+            bot.send_message(message.from_user.id,"Мая твая не разумець. Спіс пытанняў, на якія я магу адказаць, ты знойдзеш па запыце 'help'.")
     except Exception as e:
         logger.info(e)
 
