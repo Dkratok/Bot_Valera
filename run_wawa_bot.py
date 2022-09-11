@@ -1,14 +1,17 @@
 import time
 import telebot
+from telebot import types
 import src.read_from_files as rfl
 from src.logging_module import *
 
 bot = telebot.TeleBot(rfl.read_whole_file('token.txt'))
+markup = types.ReplyKeyboardMarkup(one_time_keyboard=False)
+markup.add('Нашы рэгулярныя забегi', 'Масавыя забегі ў Варшаве', 'Набыць экіпіроўку', 'Карысныя спасылкі')
 
 
 @bot.message_handler(commands=['start'])
 def get_start_messages(message):
-    bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), parse_mode='Markdown')
+    bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), reply_markup=markup, parse_mode='Markdown')
 
 
 @bot.message_handler(content_types=['text'])
@@ -19,22 +22,19 @@ def get_text_messages(message):
                 +str(message.from_user.username)+' LanguageCode: '+str(message.from_user.language_code))
 
     try:
-        if ('вiтаю' in req) | ('прывiтанне' in req) | ('привет' in req):
-            bot.send_message(message.from_user.id, "Вiтаю! Я - RunWawaBot, дапамагу табе з адаптацыяй да нашай тусоўкi"
-                                                   " бегуноў, а таксама з пошукам экіпіроўкі для бегуноў. Цiснi кнопку"
-                                                   " ў залежнасцi ад таго, якое пытанне цiкавiць.")
-        elif ('дапамога' in req) | ('помощь' in req) | ('help' in req):
+        if ('дапамога' in req) | ('помощь' in req) | ('help' in req) | ('вiтаю' in req) | ('прывiтанне' in req) | ('привет' in req):
             bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), parse_mode='Markdown')
         elif ('нашы рэгулярныя забегi' in req):
-            bot.send_photo(message.from_user.id, open('data/reg_runs.txt'))
-        elif ('масавыя забегі ў варшаве' in req) | ('mass_run.txt' in req):
-            bot.send_message(message.from_user.id, rfl.read_whole_file('data/shops.txt'), parse_mode='Markdown')
+            bot.send_message(message.from_user.id, rfl.read_whole_file('data/reg_runs.txt'), parse_mode='Markdown')
+        elif ('масавыя забегі ў варшаве' in req):
+            bot.send_message(message.from_user.id, rfl.read_whole_file('data/mass_run.txt'), parse_mode='Markdown')
         elif ('набыць экіпіроўку' in req):
-            bot.send_document(message.from_user.id, open('data/shops.txt'), parse_mode='Markdown')
-        elif ('спасылкі' in req):
-            bot.send_message(message.from_user.id, open('data/links.txt'), parse_mode='Markdown')
+            bot.send_message(message.from_user.id, rfl.read_whole_file('data/shops.txt'), parse_mode='Markdown')
+        elif ('карысныя спасылкі' in req):
+            bot.send_message(message.from_user.id, rfl.read_whole_file("data/links.txt"), parse_mode='Markdown')
         else:
-            bot.send_message(message.from_user.id,"Мая твая не разумець. Спіс пытанняў, на якія я магу адказаць, ты знойдзеш па запыце 'help'.")
+            bot.send_message(message.from_user.id,"Мая твая не разумець. Спіс пытанняў, на якія я магу адказаць, "
+                                                  "ты знойдзеш па запыце 'help'.", parse_mode='Markdown')
     except Exception as e:
         logger.info(e)
 
