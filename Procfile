@@ -1,1 +1,1 @@
-worker: python cruze_bot.py
+worker: python run_wawa_bot.py
