@@ -1,1 +1,2 @@
 pyTelegramBotApi==3.6.7
+Pyyaml==6.0
