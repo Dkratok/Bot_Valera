@@ -6,7 +6,7 @@ from src.logging_module import *
 
 bot = telebot.TeleBot(rfl.read_whole_file('token.txt'))
 markup = types.ReplyKeyboardMarkup(one_time_keyboard=False)
-markup.add('Нашы рэгулярныя забегi', 'Масавыя забегі ў Варшаве', 'Набыць экіпіроўку', 'Карысныя спасылкі')
+markup.add('Нашы рэгулярныя забегi', 'Масавыя забегі ў Варшаве', 'Набыць экіпіроўку', 'Карысныя спасылкі', 'Кнiгi', 'Падкасты')
 
 
 @bot.message_handler(commands=['start'])
@@ -25,13 +25,17 @@ def get_text_messages(message):
         if ('дапамога' in req) | ('помощь' in req) | ('help' in req) | ('вiтаю' in req) | ('прывiтанне' in req) | ('привет' in req):
             bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), parse_mode='Markdown')
         elif ('нашы рэгулярныя забегi' in req):
-            bot.send_message(message.from_user.id, rfl.read_whole_file('data/reg_runs.txt'), parse_mode='Markdown')
+            bot.send_message(message.from_user.id, rfl.read_whole_file('data/reg_runs.txt'), parse_mode='HTML')
         elif ('масавыя забегі ў варшаве' in req):
             bot.send_message(message.from_user.id, rfl.read_whole_file('data/mass_run.txt'), parse_mode='Markdown')
         elif ('набыць экіпіроўку' in req):
             bot.send_message(message.from_user.id, rfl.read_whole_file('data/shops.txt'), parse_mode='Markdown')
         elif ('карысныя спасылкі' in req):
-            bot.send_message(message.from_user.id, rfl.read_whole_file("data/links.txt"), parse_mode='Markdown')
+            bot.send_message(message.from_user.id, rfl.read_whole_file("data/links.txt"), parse_mode='HTML')
+        elif ('кнiгi' in req):
+            bot.send_message(message.from_user.id, rfl.read_whole_file("data/books.txt"), parse_mode='Markdown')
+        elif ('падкасты' in req):
+            bot.send_message(message.from_user.id, rfl.read_whole_file("data/podcasts.txt"), parse_mode='Markdown')
         else:
             bot.send_message(message.from_user.id,"Мая твая не разумець. Спіс пытанняў, на якія я магу адказаць, "
                                                   "ты знойдзеш па запыце 'help'.", parse_mode='Markdown')
