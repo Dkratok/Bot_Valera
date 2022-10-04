@@ -23,7 +23,7 @@ def get_text_messages(message):
 
     try:
         if ('дапамога' in req) | ('помощь' in req) | ('help' in req) | ('вiтаю' in req) | ('прывiтанне' in req) | ('привет' in req):
-            bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), parse_mode='Markdown')
+            bot.send_message(message.from_user.id, rfl.read_whole_file('data/help.txt'), reply_markup=markup, parse_mode='Markdown')
         elif ('нашы рэгулярныя забегi' in req):
             bot.send_message(message.from_user.id, rfl.read_whole_file('data/reg_runs.txt'), parse_mode='HTML')
         elif ('масавыя забегі ў варшаве' in req):
@@ -38,7 +38,7 @@ def get_text_messages(message):
             bot.send_message(message.from_user.id, rfl.read_whole_file("data/podcasts.txt"), parse_mode='Markdown')
         else:
             bot.send_message(message.from_user.id,"Мая твая не разумець. Спіс пытанняў, на якія я магу адказаць, "
-                                                  "ты знойдзеш па запыце 'help'.", parse_mode='Markdown')
+                                                  "ты знойдзеш па запыце 'help'.",  reply_markup=markup, parse_mode='Markdown')
     except Exception as e:
         logger.info(e)
 
